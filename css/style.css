@@ -1,0 +1,165 @@
+body {
+
+  background-image: url("../img/woodjfif.jfif");
+color: white;
+
+
+}
+
+.btn1 {
+
+font-size: x-large !important;
+margin-left: 13em;
+background-color: rgb(83, 6, 60) !important;
+}
+
+
+.bg-danger {
+
+background-color: rgb(83, 6, 60) !important;
+
+
+}
+
+.btn2 {
+
+  font-size: x-large !important;
+margin-left: 35px !important;
+  width: 170px !important;
+  background-color: rgb(83, 6, 60) !important;
+} 
+
+
+
+
+
+#image {
+
+margin-left:35px ;
+width: 280px !important;
+height: auto !important;
+}
+
+
+
+img {
+  width: 150px;
+  height: auto;
+  
+  
+  }
+
+.btn-danger {
+width:100px ;
+
+}
+
+.btn-info {
+  width:150px ;
+background-color: #dc3545 !important;
+
+}
+
+
+
+.cube {
+
+  border: solid black 2px;
+  box-shadow: 4px 3px rgb(0, 0, 0);
+
+
+}
+
+
+#round {
+
+  display: none;
+
+}
+
+hr {
+
+
+  border-top: 1px solid rgb(238, 238, 238);
+  border-bottom: 1px solid rgb(202, 202, 202);
+  border-radius: 1px;
+width: 250px;
+margin-left: 0px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-image: url("../img/woodjfif.jfif");
+  text-align: center;
+  }
+
+#image {
+  margin:25px 0px !important;
+
+  width: 280px !important;
+  height: auto !important;
+
+}
+  
+.cube {
+
+  width: 100px;
+  height: auto;
+
+
+}
+
+
+.btn {
+
+margin:20px 0px 0px 0px;
+
+
+}
+
+.btn1 {
+
+width: 180px;
+margin-left: 10px !important;
+margin-bottom: 10px;
+}
+
+
+
+
+
+ol  {
+margin-left:20px ;
+text-align: justify;
+
+}
+
+
+
+hr {
+
+  border-top: 1px solid rgb(238, 238, 238);
+  border-bottom: 1px solid rgb(202, 202, 202);
+  border-radius: 1px;
+width: 250px;
+margin-left: 120px;
+
+
+}
+
+#z {
+
+display: none;
+
+
+}
+
+
+
+
+
+}
+
+
+
