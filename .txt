@@ -1,0 +1,216 @@
+const score = document.getElementById('score');
+const button = document.getElementById('button');
+const lost = document.getElementById('lost');
+let kostka = document.querySelectorAll(".cube");
+const round = document.getElementById('round');
+
+let hody = [];
+let selected = 0;
+let vyber = [];
+let soucet = 0;
+let skore = 0;
+let pocet = 6;
+let minus = 5;
+let clicked = [false, false, false, false, false, false];
+
+
+function kostky() {
+
+    for (let j = 0; j <= 5; j++) {
+        hody[j] = Math.ceil(Math.random() * 1);
+
+    }
+
+    for (let i = 0; i < kostka.length; i++) {
+
+
+        kostka[i].src = './img/0kostka' + hody[i] + '.png';
+
+
+        kostka[i].style.border = "black solid 2px";
+        kostka[i].style.boxShadow = " 4px 3px black";
+
+        button.style.display = "none";
+        round.style.display = "none";
+        clicked[i] = false;
+
+    }
+
+
+}
+
+
+function Vypis() {
+
+    score.innerHTML = `<p>Score v tomto kole: ${soucet}</p>`;
+    score.innerHTML += `<hr>`;
+    score.innerHTML += `<p>Celkové score: ${skore}/3000</p>`;
+    score.innerHTML += `<hr>`;
+}
+
+
+function selection() {
+   
+    if (selected > 0 && minus > 0) {
+        minus -= selected;
+        
+        for (let i = 5; i > minus; i--) {
+
+            kostka[i].style.visibility = "hidden";
+            hody.pop();
+            clicked.pop();
+         
+           
+
+        }
+
+    }
+
+
+  else {
+        for (let i = 0; i < 6; i++) {
+            kostka[i].style.visibility = "visible";
+
+        }
+  }
+
+
+
+}
+
+
+
+button.addEventListener('click', () => {
+
+    kostky();
+    selection();
+
+    if (hody.includes(1, 0) || hody.includes(5, 0)) {
+        lost.innerHTML = `<h2 class="text-center" ></h2>`;
+        button.innerText = "Hraj";
+    }
+
+    else {
+
+
+
+        lost.innerHTML = `<h2 class="text-center" >Ztrácíš body !</h2>`;
+        selected = 0;
+        soucet = 0;
+        Vypis();
+        button.innerText = "Další kolo";
+        button.style.display = "initial";
+
+
+    }
+
+
+});
+
+
+
+
+//hraj
+for (let i = 0; i <= 5; i++) {
+
+    kostka[i].addEventListener('click', function () {
+        console.log(selected);
+    console.log(minus);
+    console.log(hody);
+
+        if (clicked[i] == false) {
+
+
+            kostka[i].style.border = " yellow solid 10px";
+            kostka[i].style.boxShadow = " 0px 0px black";
+            selected++;
+            vyber.push(hody[i]);
+           // if (vyber.includes(1, 0) && vyber.includes(2, 0) && vyber.includes(3, 0) && vyber.includes(4, 0) && vyber.includes(5, 0) && vyber.includes(6, 0)) soucet += 1500;
+
+
+
+
+
+
+            clicked[i] = true;
+
+            button.style.display = "initial";
+            round.style.display = "initial";
+
+
+
+
+        }
+        else {
+
+
+            kostka[i].style.border = "black solid 2px";
+            kostka[i].style.boxShadow = " 4px 3px black";
+            selected--;
+            vyber.pop(hody[i]);
+
+         
+            if (hody[i] == 1) {
+
+                soucet -= 100;
+
+            }
+
+            if (hody[i] == 5) {
+                soucet -= 50;
+            }
+            clicked[i] = false;
+        }
+
+        Vypis();
+
+
+    });
+
+}
+
+//ukoncit a skorovat
+round.addEventListener('click', () => {
+    vyber.length = 0
+    selected = 0;
+
+   
+
+    skore += soucet;
+
+    soucet = 0;
+    Vypis();
+
+
+    kostky();
+
+
+    selection();
+
+
+
+
+
+    if (skore >= 3000) {
+        lost.innerHTML = `<h2 class="text-center" >Vyhráváš ! </h2>`;
+    }
+});
+
+
+
+
+
+
+
+
+function same(hod) {
+    let count = 0;
+    vyber.forEach((hod) => (hod === hod && count++));
+
+    if (count == 3 && hod != 1) soucet += (100 * hod);
+    else if (count == 4) soucet += ((100 * hod) * 2);
+    else if (count == 3 && hod == 1) soucet += 1000;
+}
+
+
+

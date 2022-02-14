@@ -37,7 +37,8 @@ height: auto !important;
 img {
   width: 150px;
   height: auto;
-  }
+  cursor:pointer; 
+}
 
 .btn-danger {
 width:100px ;
@@ -86,7 +87,7 @@ margin-left: 0px;
 
   width: 100px;
   height: auto;
-
+  
 
 }
 

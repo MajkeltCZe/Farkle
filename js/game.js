@@ -5,7 +5,7 @@ let kostka = document.querySelectorAll(".cube");
 const round = document.getElementById('round');
 
 let hody = [];
-let gameon = false;
+let minus,pocetkostek = 6;
 let selected = 0;
 let soucet = 0;
 let skore = 0;
@@ -15,7 +15,7 @@ let clicked = [];
 function kostky() {
 
     for (let j = 0; j <= 5; j++) {
-        hody[j] = Math.ceil(Math.random() * 6);
+        hody[j] = Math.ceil(Math.random() * 1);
 
     }
 
@@ -49,32 +49,26 @@ score.innerHTML += `<hr>`;
 
 function selection() {
 
-    if (selected > 0) {
-    let minus = 5;
+if (selected > 0 && pocetkostek >= 1 ) {
+ 
+  let  minus = 5;
 minus -= selected;
 
-  for (let r = 5; r > minus;r-- ) {
-
-
-    hody.pop();
-clicked.pop();
-kostka[r].style.visibility= "hidden";
+for (let i = 5; i > minus;i-- ) {
+ hody.pop();
+ clicked.pop();
+kostka[i].style.visibility= "hidden";
 }
 }
 
-else {
 
-   
+if (pocetkostek < 1 || selected < 0) {
+    for (let i = 0; i < 6;i++) {    
+        kostka[i].style.visibility= "visible";   
+        
+    }
+    }
 
-for (let i = 0; i < 6;i++) {
-    
-    
-   
-    kostka[i].style.visibility= "visible";
-    
-}
-
-}
 
 }
 
@@ -86,7 +80,6 @@ button.addEventListener('click', () => {
     selection();
 
     if (hody.includes(1, 0) || hody.includes(5, 0)) {
-        gameon = true;
         lost.innerHTML = `<h2 class="text-center" ></h2>`;
         button.innerText = "Hraj";
     }
@@ -111,11 +104,13 @@ button.addEventListener('click', () => {
 
 
 
-
+//hraj 
 for (let f = 0; f <= 5; f++) {
 
     kostka[f].addEventListener('click', function () {
-        console.log(clicked);
+        console.log(pocetkostek);
+        console.log(hody);
+
 
         if (clicked[f] == false) {
 
@@ -123,9 +118,9 @@ for (let f = 0; f <= 5; f++) {
                 kostka[f].style.border = " yellow solid 10px";
                 kostka[f].style.boxShadow = " 0px 0px black";
                 selected++;
+                pocetkostek--;
 
-
-                console.log(selected);
+               
                 if (hody[f] == 1) {
                     soucet += 100;
                 
@@ -152,9 +147,9 @@ for (let f = 0; f <= 5; f++) {
                 kostka[f].style.border = "black solid 2px";
                 kostka[f].style.boxShadow = " 4px 3px black";
                selected--;
+               pocetkostek++;
 
-
-                console.log(selected);
+              
                 if (hody[f] == 1) {
 
                     soucet -= 100;
@@ -186,7 +181,7 @@ round.addEventListener('click', () => {
 
     selected = 0;
 
-    console.log(selected);
+  
 
     skore += soucet;
 
@@ -207,12 +202,4 @@ round.addEventListener('click', () => {
         lost.innerHTML = `<h2 class="text-center" >Vyhráváš ! </h2>`;
         }
 });
-
-
-
-
-
-
-
-
 
