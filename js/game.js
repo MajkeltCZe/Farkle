@@ -1,17 +1,15 @@
 const score = document.getElementById('score');
 const button = document.getElementById('button');
 const lost = document.getElementById('lost');
-var kostka = document.querySelectorAll(".cube");
+let kostka = document.querySelectorAll(".cube");
 const round = document.getElementById('round');
-
-
 
 let hody = [];
 let gameon = false;
 let selected = 0;
-var soucet = 0;
-var skore = 0;
-var clicked = [];
+let soucet = 0;
+let skore = 0;
+let clicked = [];
 
 
 function kostky() {
@@ -46,7 +44,6 @@ score.innerHTML = `<p>Score v tomto kole: ${soucet}</p>`;
 score.innerHTML += `<hr>`;
 score.innerHTML += `<p>Celkové score: ${skore}/3000</p>`;
 score.innerHTML += `<hr>`;
-
 }
 
 
@@ -54,7 +51,6 @@ function selection() {
 
     if (selected > 0) {
     let minus = 5;
-
 minus -= selected;
 
   for (let r = 5; r > minus;r-- ) {
@@ -63,10 +59,7 @@ minus -= selected;
     hody.pop();
 clicked.pop();
 kostka[r].style.visibility= "hidden";
-
-
 }
-
 }
 
 else {
@@ -135,6 +128,7 @@ for (let f = 0; f <= 5; f++) {
                 console.log(selected);
                 if (hody[f] == 1) {
                     soucet += 100;
+                
                 }
 
                 if (hody[f] == 5) {
@@ -210,13 +204,8 @@ round.addEventListener('click', () => {
 
 
     if (skore >= 3000) {
-
         lost.innerHTML = `<h2 class="text-center" >Vyhráváš ! </h2>`;
-        
-        
         }
-
-
 });
 
 
