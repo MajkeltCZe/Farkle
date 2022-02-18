@@ -203,14 +203,17 @@ round.addEventListener('click', () => {
 
 
 
-function same(hod) {
-    let count = 0;
-    vyber.forEach((hod) => (hod === hod && count++));
 
-    if (count == 3 && hod != 1) soucet += (100 * hod);
-    else if (count == 4) soucet += ((100 * hod) * 2);
-    else if (count == 3 && hod == 1) soucet += 1000;
-}
+  
+  
 
+   
+   
+   
 
 
+
+
+
+
+ 

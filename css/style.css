@@ -32,13 +32,32 @@ margin-top: 10px;
 margin-left:35px ;
 width: 280px !important;
 height: auto !important;
+
 }
 
 img {
   width: 150px;
   height: auto;
   cursor:pointer; 
+
 }
+
+.kostky {
+  display:none;
+
+}
+
+a {
+color: rgb(245, 245, 245);
+font-size: 30px;
+
+}
+
+a:hover {
+  color: rgb(214, 210, 210);
+  
+  }
+
 
 .btn-danger {
 width:100px ;
@@ -87,9 +106,29 @@ margin-left: 0px;
 
   width: 100px;
   height: auto;
-  
-
+  margin-left: -250px !important;
+margin-right: 50px !important ;
 }
+
+
+.cube2 {
+
+
+  margin-left: 250px !important;
+margin-right: 50px !important ;
+margin-top: -915px !important;
+}
+
+.cube3 {
+  margin-left: 250px !important;
+margin-top: -1095px !important;
+}
+
+.cube4 {
+  margin-left: 250px !important;
+  margin-right: 50px !important ;
+  margin-top: -230px !important;
+  }
 
 
 .btn {
@@ -108,6 +147,9 @@ margin-bottom: 10px;
 
 
 
+.ml-7 {
+  margin-left: 0px !important; 
+  }
 
 ol  {
 margin-left:20px ;
@@ -129,6 +171,16 @@ margin-left: 120px;
 display: none;
 }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 .ml-6 {
