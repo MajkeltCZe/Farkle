@@ -3,45 +3,61 @@ const button = document.getElementById('button');
 const lost = document.getElementById('lost');
 let kostka = document.querySelectorAll(".cube");
 const round = document.getElementById('round');
+const hide = document.querySelectorAll(".kostky");
 
-let hody = [];
-let selected = 0;
+let hody = [1,2,3,4,5,6];
+let minus, pocetkostek = 6, gamemode = 'nic';
 let vyber = [];
-let soucet = 0;
-let skore = 0;
-let pocet = 6;
-let minus = 5;
-let clicked = [false, false, false, false, false, false];
+let selected = 0; let soucet = 0;let skore = 0;
+let clicked = [false,false,false,false,false,false];
 
-
-function kostky() {
-
-    for (let j = 0; j <= 5; j++) {
-        hody[j] = Math.ceil(Math.random() * 1);
-
+class special {
+    constructor(mode,points,one,two,three,four,five,six) {
+      this.points = points;
+      this.mode = mode;
+      this.one = one;
+      this.two = two;
+      this.three = three;
+      this.four = four;
+      this.five = five;
+      this.six = six;
     }
 
-    for (let i = 0; i < kostka.length; i++) {
+ arrays() {
 
-
-        kostka[i].src = './img/0kostka' + hody[i] + '.png';
-
-
-        kostka[i].style.border = "black solid 2px";
-        kostka[i].style.boxShadow = " 4px 3px black";
-
-        button.style.display = "none";
-        round.style.display = "none";
-        clicked[i] = false;
-
-    }
-
-
+}
 }
 
 
-function Vypis() {
 
+postupka = new special('postupka',1500,1,2,3,4,5,6);
+petak = new special('petak',500,1,2,3,4,5,1);
+dosesti = new special('dosesti',750,2,2,3,4,5,6);
+
+
+function points() {
+postupka.arrays();
+petak.arrays();
+dosesti.arrays();
+}
+
+
+
+function kostky() {
+    for (let j = 0; j <= 5; j++) {
+        hody[j] = Math.ceil(Math.random() * 6);
+    }
+    for (let i = 0; i < kostka.length; i++) {
+        kostka[i].src = './img/0kostka' + hody[i] + '.png';
+        kostka[i].style.border = "black solid 2px";
+        kostka[i].style.boxShadow = " 4px 3px black";
+        button.style.display = "none";
+        round.style.display = "none";
+        clicked[i] = false;
+    }
+}
+
+function Vypis() {
     score.innerHTML = `<p>Score v tomto kole: ${soucet}</p>`;
     score.innerHTML += `<hr>`;
     score.innerHTML += `<p>Celkové score: ${skore}/3000</p>`;
@@ -50,152 +66,107 @@ function Vypis() {
 
 
 function selection() {
-   
-    if (selected > 0 && minus > 0) {
+    if (selected > 0 && pocetkostek >= 1) {
+        let minus = 5;
         minus -= selected;
-        
         for (let i = 5; i > minus; i--) {
-
-            kostka[i].style.visibility = "hidden";
             hody.pop();
             clicked.pop();
-         
-           
-
+            kostka[i].style.visibility = "hidden";
         }
-
     }
-
-
-  else {
+   if (pocetkostek < 1 || selected < 0) {
         for (let i = 0; i < 6; i++) {
             kostka[i].style.visibility = "visible";
-
-        }
-  }
-
-
-
+        } 
+        pocetkostek = 6;
+        selected = 0;
+    }
 }
 
-
-
 button.addEventListener('click', () => {
-
     kostky();
     selection();
-
-    if (hody.includes(1, 0) || hody.includes(5, 0)) {
+    hide[0].style.display = "contents";
+    hide[1].style.display = "contents";
+    console.log(hody);
         lost.innerHTML = `<h2 class="text-center" ></h2>`;
         button.innerText = "Hraj";
-    }
-
-    else {
-
-
-
-        lost.innerHTML = `<h2 class="text-center" >Ztrácíš body !</h2>`;
-        selected = 0;
-        soucet = 0;
-        Vypis();
-        button.innerText = "Další kolo";
-        button.style.display = "initial";
-
-
-    }
-
 
 });
 
 
+//hraj 
 
-
-//hraj
 for (let i = 0; i <= 5; i++) {
-
     kostka[i].addEventListener('click', function () {
-        console.log(selected);
-    console.log(minus);
-    console.log(hody);
-
         if (clicked[i] == false) {
-
-
             kostka[i].style.border = " yellow solid 10px";
             kostka[i].style.boxShadow = " 0px 0px black";
             selected++;
+            pocetkostek--;
             vyber.push(hody[i]);
-           // if (vyber.includes(1, 0) && vyber.includes(2, 0) && vyber.includes(3, 0) && vyber.includes(4, 0) && vyber.includes(5, 0) && vyber.includes(6, 0)) soucet += 1500;
-
-
-
-
-
-
             clicked[i] = true;
-
             button.style.display = "initial";
             round.style.display = "initial";
-
-
-
+           points();
+           
+           console.log(`hody: ${hody}`);
+            console.log(`selected: ${vyber}`);
+            console.log(`gamemode: ${gamemode}`);
 
         }
         else {
-
-
+            vyber.splice(hodnota(hody[i]), 1);
+            points();
             kostka[i].style.border = "black solid 2px";
             kostka[i].style.boxShadow = " 4px 3px black";
             selected--;
-            vyber.pop(hody[i]);
-
+            pocetkostek++;
+          clicked[i] = false;
          
-            if (hody[i] == 1) {
+          console.log(`hody: ${hody}`);
+          console.log(`selected: ${vyber}`);
+          console.log(`gamemode: ${gamemode}`);
+          
 
-                soucet -= 100;
-
-            }
-
-            if (hody[i] == 5) {
-                soucet -= 50;
-            }
-            clicked[i] = false;
         }
-
         Vypis();
-
-
     });
-
 }
 
-//ukoncit a skorovat
+
 round.addEventListener('click', () => {
-    vyber.length = 0
+    pocetkostek = 6;
     selected = 0;
-
-   
-
     skore += soucet;
-
     soucet = 0;
     Vypis();
-
-
     kostky();
-
-
     selection();
-
-
-
-
-
     if (skore >= 3000) {
         lost.innerHTML = `<h2 class="text-center" >Vyhráváš ! </h2>`;
     }
 });
 
+function hodnota(hody) {
+    let idx = 0;
+    vyber.forEach(i => {
+        if (hody == vyber[i]) idx = i;
+    });
+    return idx;
+}
+
+function iS(hod,c) {
+for (let i = 0;i < vyber.length;i++) {
+  if(  hod == vyber[i]) {
+    console.log(hod);
+    return c;
+  
+    }
+}
+
+}
 
 
 

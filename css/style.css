@@ -1,10 +1,23 @@
-body {
+body,html {
 
-  background-image: url("../img/woodjfif.jfif");
-color: white;
+  background-image: url("../img/wood.jpg"); 
 
+
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+height: 100%;
 
 }
+
+
+.score {
+  background-image: linear-gradient(0deg, rgb(15, 0, 13) 0%, rgb(41, 0, 35) 100%);
+color: white;
+height: max-content;
+
+}
+
 
 .btn1 {
 font-size: x-large !important;
@@ -43,8 +56,8 @@ img {
 }
 
 .kostky {
-  display:none;
-
+  display:contents;
+  
 }
 
 a {
@@ -90,7 +103,9 @@ margin-left: 0px;
 
 @media only screen and (max-width: 600px) {
   body {
-    background-image: url("../img/woodjfif.jfif");
+    background-image: url("../img/wood.jpg"); 
+
+
   text-align: center;
   }
 
